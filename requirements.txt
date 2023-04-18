@@ -14,5 +14,4 @@ streamlit-pandas-profiling
 pyodbc
 pymssql
 sqlalchemy
-tkinter
 tk
