@@ -1,0 +1,15 @@
+streamlit
+pandas
+matplotlib
+numpy
+requests
+seaborn
+Pillow
+pickle-mixin
+lime
+joblib
+scikit-learn
+plotly
+streamlit-pandas-profiling
+pyodbc
+pymssql

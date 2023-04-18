@@ -1,0 +1,94 @@
+
+        df_predicted_combined_decoded = utl.decodeDataWithInversetransform(df_predicted_combined)
+        tar = "prediction"
+        st.markdown('\n')
+        st.markdown('\n')
+        st.markdown('\n')
+        st.subheader("Recommended features for consideration : ")
+        st.markdown('\n')
+        for cat in Categorical or Object:
+            a = df_predicted_combined_decoded.groupby(cat)["prediction"].value_counts(normalize=True).unstack()
+
+            High_risk_cat = []
+            list1 = a.index.tolist()
+
+            for i in range(len(a)):
+                feat = list1[i]
+                if a["Success"][feat] > 0.45:
+                    High_risk_cat.append(list1[i])
+
+            if len(High_risk_cat) > 0:
+                High_risk_cat_str = str(High_risk_cat)[1:-1]
+                st.write("High success outcome feature", cat, ":  ", High_risk_cat_str)
+                cat_graph_ok = st.checkbox('Display plot', key=cat)
+                if cat_graph_ok:
+                    int_level = df_predicted_combined_decoded[cat].value_counts()
+                    plt.xlabel("feat", size=16, )
+                    plt.ylabel("Count", size=16)
+                    ax = a.plot(kind='barh', stacked='True', title="percentage distribution", figsize=(10, 6))
+                    st.pyplot()
+                    st.markdown('\n')
+
+        # st.subheader("Numerical columns to consider")
+        st.markdown('\n')
+        for num in Numerical:
+            new = num + "_new"
+            bin = 5
+            df_predicted_combined_decoded[new] = pd.cut(df_predicted_combined_decoded[num], bin, duplicates='drop')
+            m = df_predicted_combined_decoded[new].value_counts()
+
+            if len(m[m == 0]) > 0:
+                bin = bin - len(m[m == 0])
+                df_predicted_combined_decoded[new] = pd.cut(df_predicted_combined_decoded['emp.var.rate'], bin)
+
+            b = df_predicted_combined_decoded.groupby(new)["prediction"].value_counts(normalize=True).unstack()
+            High_risk_num = []
+            list2 = b.index.tolist()
+
+            for i in range(len(b)):
+                feat = list2[i]
+                if b["Success"][feat] > 0.45:
+                    High_risk_num.append(list2[i])
+
+            if len(High_risk_num) > 0:
+                High_risk_num_str = str(High_risk_num)[1:-1]
+                st.write("High success outcome feature ",num , ":  ", High_risk_num_str)
+                num_graph_ok = st.checkbox('Display plot', key=num)
+                if num_graph_ok:
+                    b.plot(kind='barh', stacked='True', title="percentage distribution", xlabel=num)
+                    int_level = df_predicted_combined_decoded[new].value_counts()
+                    st.pyplot()
+                    st.markdown('\n')
+
+
+
+
+cons.price.idx: consumer price index - monthly indicator (numeric)
+The Consumer Price Index
+measures the overall change in consumer prices over time based on a representative basket of goods and services. 
+The CPI It is the most widely used measure of inflation, closely followed by policymakers, 
+financial markets, businesses, and consumers.
+
+cons.conf.idx: consumer confidence index - monthly indicator (numeric)
+Consumer Confidence Index
+The Consumer Confidence Index (CCI) is a survey, administered by The Conference Board, 
+that measures how optimistic or pessimistic consumers are regarding their expected financial situation.
+
+euribor3m
+emp.var.rate: employment variation rate - quarterly indicator (numeric)
+
+
+nr.employed: number of employees - quarterly indicator (numeric)
+
+emp.var.rate: employment variation rate - quarterly indicator (numeric)
+What is employee variation?
+Employment variations occur when a full-time, part-time, continuing or 
+fixed term employee: Undertakes approved specific duties and responsibilities in addition to their normal work;
+Relieves in a higher level position; Is seconded to a temporary vacancy in another work unit; or.
+
+Cylical employment variation is essentially the variation of how many people are being hired or fired due to the shifts in the 
+conditions of the economy. When the economy is in a recession or depression, people should be more conservative with their money 
+and how the spend it because their financial future is less clear due to cyclical unemployment. 
+When the economy is at its peak, individuals can be more open to risky investments because their employment options are greater.
+
+

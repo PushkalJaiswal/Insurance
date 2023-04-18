@@ -1,0 +1,59 @@
+ '''tar = "prediction"
+        st.markdown('\n')
+        st.markdown('\n')
+        st.markdown('\n')
+        st.subheader("Recommended features for consideration : ")
+        st.markdown('\n')
+        for cat in Categorical or Object:
+            a = df_predicted_combined.groupby(cat)["prediction"].value_counts(normalize=True).unstack()
+
+            High_risk_cat = []
+            list1 = a.index.tolist()
+
+            for i in range(len(a)):
+                feat = list1[i]
+                if a["Success"][feat] > 0.45:
+                    High_risk_cat.append(list1[i])
+
+            if len(High_risk_cat) > 0:
+                High_risk_cat_str = str(High_risk_cat)[1:-1]
+                st.write("High success outcome feature", cat, ":  ", High_risk_cat_str)
+                cat_graph_ok = st.checkbox('Display plot', key=cat)
+                if cat_graph_ok:
+                    int_level = df_predicted_combined[cat].value_counts()
+                    plt.xlabel("feat", size=16, )
+                    plt.ylabel("Count", size=16)
+                    ax = a.plot(kind='barh', stacked='True', title="percentage distribution", figsize=(10, 6))
+                    st.pyplot()
+                    st.markdown('\n')
+
+        # st.subheader("Numerical columns to consider")
+        st.markdown('\n')
+        for num in Numerical:
+            new = num + "_new"
+            bin = 5
+            df_predicted_combined[new] = pd.cut(df_predicted_combined[num], bin, duplicates='drop')
+            m = df_predicted_combined[new].value_counts()
+
+            if len(m[m == 0]) > 0:
+                bin = bin - len(m[m == 0])
+                df_predicted_combined[new] = pd.cut(df_predicted_combined['emp.var.rate'], bin)
+
+            b = df_predicted_combined.groupby(new)["prediction"].value_counts(normalize=True).unstack()
+            High_risk_num = []
+            list2 = b.index.tolist()
+
+            for i in range(len(b)):
+                feat = list2[i]
+                if b["Success"][feat] > 0.45:
+                    High_risk_num.append(list2[i])
+
+            if len(High_risk_num) > 0:
+                High_risk_num_str = str(High_risk_num)[1:-1]
+                st.write("High success outcome feature ",num , ":  ", High_risk_num_str)
+                num_graph_ok = st.checkbox('Display plot', key=num)
+                if num_graph_ok:
+                    b.plot(kind='barh', stacked='True', title="percentage distribution", xlabel=num)
+                    int_level = df_predicted_combined[new].value_counts()
+                    st.pyplot()
+                    st.markdown('\n')'''
