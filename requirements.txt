@@ -13,3 +13,4 @@ plotly
 streamlit-pandas-profiling
 pyodbc
 pymssql
+sqlalchemy
