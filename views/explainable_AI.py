@@ -1,6 +1,6 @@
-from ast import Num
+# from ast import Num
 import os
-import io
+# import io
 # from tkinter import *
 # from soupsieve import select
 import streamlit as st
@@ -11,14 +11,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from PIL import  Image
 #from xgboost import XGBClassifier
-from joblib import dump, load
-import base64
-from pandas.api.types import is_numeric_dtype
-from pandas_profiling import ProfileReport
-import streamlit.components.v1 as components
-import lime
-import lime.lime_tabular
-import webbrowser
+# from joblib import dump, load
+# import base64
+# from pandas.api.types import is_numeric_dtype
+# from pandas_profiling import ProfileReport
+# import streamlit.components.v1 as components
+# import lime
+# import lime.lime_tabular
+# import webbrowser
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
