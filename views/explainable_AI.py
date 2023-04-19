@@ -2,7 +2,7 @@ from ast import Num
 import os
 import io
 # from tkinter import *
-from soupsieve import select
+# from soupsieve import select
 import streamlit as st
 #from streamlit_option_menu import option_menu
 import numpy as np
