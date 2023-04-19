@@ -162,7 +162,7 @@ def load_view():
             corr = df_analysis.corr(method='pearson')
 
             fig2, ax2 = plt.subplots()
-            mask = np.zeros_like(corr, dtype=np.bool)
+            mask = np.zeros_like(corr, dtype=bool)
             mask[np.triu_indices_from(mask)] = True
         # Colors
             cmap = sns.diverging_palette(240, 10, as_cmap=True)
